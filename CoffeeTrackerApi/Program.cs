@@ -1,4 +1,9 @@
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using CoffeeTrackerApi.Data;
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddDbContext<CoffeeTrackerApiContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("CoffeeTrackerApiContext") ?? throw new InvalidOperationException("Connection string 'CoffeeTrackerApiContext' not found.")));
 
 // Add services to the container.
 
